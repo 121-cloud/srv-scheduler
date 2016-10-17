@@ -1,0 +1,96 @@
+{
+	"main": "otocloud.app.rfb.cana.ReverseFactoringAppEngine",
+	"options": {
+		"config": {
+			"service_id": "10",
+			"service_name": "otocloud-app-rfb-cana",	
+			"app_inst_scope": ["1~1000"],		
+			"app_desc": "凯拿应付保理服务",
+			"master_role": "2",
+			"distributed_node_index": 0,			
+			"isolation_vertx_pool": true,
+			"api_register_server": {
+				"webserver_name": "121Node1"
+			},
+			"app_datasource": {
+				"config": {
+					"password": "www",
+					"authSource": "121PSC.sa",
+					"db_name": "RFB_CANA",
+					"connection_string": "mongodb://10.10.23.112:27017",
+					"username": "sa"
+				},
+				"sharedpool": "mongo-psc"
+			},
+			"app_subscribers": [
+				{
+					"instid": "1",
+					"instname": "rfb_1",
+					"account": "1",
+					"acccode": "1",
+					"appcode": "rfb",
+					"bizroleid": "2"
+				},
+				{
+					"instid": "89",
+					"instname": "rfb_89",
+					"account": "89",
+					"acccode": "89",
+					"appcode": "rfb",
+					"bizroleid": "2"					
+				}
+			],
+			"component_deployment": [],
+			"component_common": {					
+			},
+			"component_config": {
+				 "scheduler": {
+		      		"options": {
+        				"config" :  {
+	        				"init": {
+								"org.quartz.scheduler.instanceName": "scheduler",
+								"org.quartz.scheduler.rmi.export": "false",
+								"org.quartz.scheduler.rmi.proxy": "false",
+								"org.quartz.scheduler.wrapJobExecutionInUserTransaction": "false", 
+								"org.quartz.threadPool.class": "org.quartz.simpl.SimpleThreadPool",
+								"org.quartz.threadPool.threadCount": "10",
+								"org.quartz.threadPool.threadPriority": "5",
+								"org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread": "true", 
+								"org.quartz.jobStore.misfireThreshold": "60000",
+								"org.quartz.jobStore.class": "org.quartz.impl.jdbcjobstore.JobStoreTX",
+								"org.quartz.jobStore.driverDelegateClass": "org.quartz.impl.jdbcjobstore.StdJDBCDelegate",
+								"org.quartz.jobStore.useProperties": "true",
+								"org.quartz.jobStore.tablePrefix": "qrtz_",
+								"org.quartz.jobStore.dataSource": "qzDS",
+								"org.quartz.dataSource.qzDS.driver": "com.mysql.jdbc.Driver",
+								"org.quartz.dataSource.qzDS.URL": "jdbc:mysql://localhost:3306/121db",
+								"org.quartz.dataSource.qzDS.user": "root",
+								"org.quartz.dataSource.qzDS.password": "www",
+								"org.quartz.dataSource.qzDS.maxConnection": "10"
+							},
+							"job_packages": [
+								{"name": "otocloud_maven:otocloud:otocloud-app-rfb-cana-vendor:1.0.0-SNAPSHOT"}
+							]
+						}
+					 }
+				 }
+			},
+			"inst_common": {
+				"component_deployment": [],
+				"component_common": {					
+				},
+				"component_config": {					
+				}
+			},
+			"inst_config": {
+				"1": {
+					"component_deployment": [],
+					"component_common": {						
+					},					
+					"component_config": {						
+					}
+				}
+			}
+		}
+	}
+}
